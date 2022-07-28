@@ -5,7 +5,7 @@ namespace ClothingStore.Models
 {
     public class Order
     {
-        [BindNever]
+        [BindNever] //не отображается в ui
         public int Id { get; set; }
         
 
@@ -38,8 +38,8 @@ namespace ClothingStore.Models
         [Required(ErrorMessage = "Email adress must match the format")]
         public string Email { get; set; }
 
-        [BindNever]
-        [ScaffoldColumn(false)]
+        [BindNever] 
+        [ScaffoldColumn(false)] //запрет на отображение в исходном коде(системное поле)
         public DateTime OrderDate { get; set; }       
         
         public List<Product> Products { get; set; }
