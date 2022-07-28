@@ -1,0 +1,215 @@
+﻿@using System.Globalization
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <img src="~/img/Aditii.png" alt="Logo" />
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <form class="search-bar" action="" method="get">
+                    <input class="search-place" name="s" placeholder="" type="text" />
+                    <button class="search-btn" type="submit"></button>
+                </form>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <div class="shopping">
+                    <a href="#shopping-cart" class="shopping-cart"><img src="/img/Shape 2.png" alt="shopping basket" /></a>
+                    <span class="shopping-cart-price">$@ViewBag.CartPrice</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="navbar">
+    <div class="container">
+        <ul>
+            <li><a class="nav-section" href="#home">HOME</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li><a class="nav-section" href="#womenstore">WOMEN STORE</a>
+                <span class="delimiter">|</span>
+            </li>           
+            <li><a class="nav-section" href="#accessories">ACCESSORIES</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li>
+                <a class="nav-section" href="#menstore">MEN STORE</a>
+                <span class="delimiter">|</span>
+            </li>
+            <li><a class="nav-section" href="#shoes">SHOES</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li><a class="nav-section" href="#sale">SALE</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li><a class="nav-section" href="#vintage">VINTAGE</a>
+                <span class="delimiter">|</span>
+            </li>
+            
+            <li><a class="nav-section" href="#profile">PROFILE</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li><a class="nav-section" href="#services">SERVICES</a>
+                <span class="delimiter">|</span>
+            </li>            
+            <li><a class="nav-section" href="#contactus">CONTACT US</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="shop-slider">
+    <div class="single-item-slide">
+        <div class="shop-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1">
+                        <img class="slide-img" src="/img/nike-tshirt.png" alt="t-shirt">
+                    </div>
+                    <div class="col-lg-5 offset-lg-2">
+                        <h1 class="slide-tagline">COWHIDE<br>STANDART CREW</h1>
+                        <p class="slide-descriction">
+                            White coloured, short-sleeved, printed T-shirt for men by<br>
+                            Levi's. This crew-neck T-shirt is made of organic cotton and<br>
+                            comes in a regular fit.
+                        </p>
+                        <button class="slide-btn">SHOP NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shop-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 offset-lg-1">
+                        <img class="slide-img" src="/img/gucci-tshirt.png" alt="t-shirt">
+                    </div>
+                    <div class="col-lg-5 offset-lg-2">
+                        <h1 class="slide-tagline">COWHIDE<br>STANDART CREW</h1>
+                        <p class="slide-descriction">
+                            White coloured, short-sleeved, printed T-shirt for men by<br>
+                            Levi's. This crew-neck T-shirt is made of organic cotton and<br>
+                            comes in a regular fit.
+                        </p>
+                        <button class="slide-btn">SHOP NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-card-slider">
+    <div class="container multiple-items-slide">
+        <div class="product-card">
+            <img class="card-img" src="/img/shoes.png" alt="">
+            <h4 class="card-title">BRANDED<br> SHOES</h4>
+            <button class="card-btn">SHOP</button>
+        </div>
+        <div class="product-card separator-card">
+            <img class="card-img" style="width:180px;" src="/img/dress_shirt.png" alt="">
+            <h4 class="card-title">BRANDED<br> SHIRTS</h4>
+            <button class=" card-btn">SHOP</button>
+        </div>
+        <div class="product-card">
+            <img class="card-img" src="/img/jeans.png" alt="">
+            <h4 class="card-title">BRANDED<br> JEANS</h4>
+            <button class="card-btn">SHOP</button>
+        </div>
+        <div class="product-card">
+            <img class="card-img" src="/img/converse.png" alt="">
+            <h4 class="card-title">BRANDED<br> SNEACKERS</h4>
+            <button class="card-btn">SHOP</button>
+        </div>
+        <div class="product-card separator-card">
+            <img class="card-img" style="width:200px;" src="/img/t-shirt.png" alt="">
+            <h4 class="card-title">BRANDED<br> T-SHIRTS</h4>
+            <button class=" card-btn">SHOP</button>
+        </div>
+        <div class="product-card">
+            <img class="card-img" style="width:200px;" src="/img/hoodie2.png" alt="">
+            <h4 class="card-title">BRANDED<br>HOODIE</h4>
+            <button class="card-btn">SHOP</button>
+        </div>
+    </div>
+</div>
+
+<div class="featured-products">
+    <div class="featured-products-section">
+        <div class="container">
+            <h2 class="featured-products-title">FEATURED PRODUCTS</h2>
+        </div>
+    </div>
+
+    <div class="container top-buffer">
+        <div class="row">
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/vans_tshirt.png" alt="">
+                <h4 class="featured-title">VANS T-SHIRT</h4>
+                <p class="featured-price">$30</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/sweater.png" alt="">
+                <h4 class="featured-title">RUBY SWEATER</h4>
+                <p class="featured-price">$65</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/coat.png" alt="">
+                <h4 class="featured-title">MEN'S COAT</h4>
+                <p class="featured-price">$140</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/dress.png" alt="">
+                <h4 class="featured-title">BLUE DRESS</h4>
+                <p class="featured-price">$122</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/women_bag.png" alt="">
+                <h4 class="featured-title">WOMAN BAG</h4>
+                <p class="featured-price">$455</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="/img/branded/heeled shoes.png" alt="">
+                <h4 class="featured-title">HEALED SHOES</h4>
+                <p class="featured-price">$340</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-links">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 offset-lg-1">
+                <h5 class="footer-title">FEATURED SALE</h5>
+                <p class="footer-captions">Alexis Hudson<br>American Apparel<br>Ben Sherman<br>Big Buddha<br>Chanel<br>Christian Audigier<br>Coach<br>Cole Haan</p>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <h5 class="footer-title">MENS STORE</h5>
+                <p class="footer-captions">Alexis Hudson<br>American Apparel<br>Ben Sherman<br>Big Buddha<br>Chanel<br>Christian Audigier<br>Coach<br>Cole Haan</p>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <h5 class="footer-title">WOMEN STORE</h5>
+                <p class="footer-captions">Alexis Hudson<br>American Apparel<br>Ben Sherman<br>Big Buddha<br>Chanel<br>Christian Audigier<br>Coach<br>Cole Haan</p>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <h5 class="footer-title">QUICK LINKS</h5>
+                <p class="footer-captions">Alexis Hudson<br>American Apparel<br>Ben Sherman<br>Big Buddha<br>Chanel<br>Christian Audigier<br>Coach<br>Cole Haan</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p class="copyright">Copyright © 2022 DarBerg</p>
+</footer>
+
+
+@*asp-controller="ShopCart" asp-action="AddToCart" asp-route-thingId="@thing.Id"   Подвязка кнопки к корзине*@
