@@ -5,7 +5,7 @@ namespace ClothingStore.Models
 {
     public class Order
     {
-        [BindNever] //не отображается в ui
+        [BindNever] //поле не будет отображаться в ui
         public int Id { get; set; }
         
 
