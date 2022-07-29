@@ -2,45 +2,55 @@
 {
     public class ProductRepository : IProductRepository
     {
-        public Task CreateProductAsync(Product product)
+        private readonly ShopDbContext shopDbContext;
+        public ProductRepository(ShopDbContext context)
         {
-            throw new NotImplementedException();
+            shopDbContext = context;
         }
 
-        public Task DeleteProductAsync(int id)
+        public async Task CreateProductAsync(Product product) =>
+            await shopDbContext.Products.AddAsync(product);
+
+        public async Task UpdateProductAsync(Product product)
         {
-            throw new NotImplementedException();
-        }
-        
-        public Task<List<Product>> GetAllProductsAsync()
-        {
-            throw new NotImplementedException();
+            var productFromDb = await shopDbContext.Products.FindAsync(new object[] { product.Id });           
+            if (productFromDb is null) return;
+            
+            productFromDb.Name = product.Name;
+            productFromDb.Description = product.Description;
+            productFromDb.Price = product.Price;            
         }
 
-        public Task<List<Product>> GetProductAsync(string name)
+        public async Task DeleteProductAsync(int id)
         {
-            throw new NotImplementedException();
+            var productFromDb = await shopDbContext.Products.FindAsync(new object[] { id });
+            if (productFromDb is null) return;
+            shopDbContext.Remove(productFromDb);
         }
 
-        public Task<Product> GetProductAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public Task UpdateProductAsync(Product product)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<Product>> GetAllProductsAsync(Category category) =>
+            await shopDbContext.Products.Include(p => p.Category).ToListAsync();
+                 
+        public async Task<List<Product>> GetProductAsync(string name) =>
+            await shopDbContext.Products.Where(p => p.Name.Contains(name)).ToListAsync();
 
-        public Task SaveAsync()
+        public async Task<Product> GetProductAsync(int id) =>
+            await shopDbContext.Products.FindAsync(new object[] { id });
+
+        public async Task SaveAsync() => await shopDbContext.SaveChangesAsync();
+
+        private bool _disposed = false;
+        protected virtual void Dispose(bool disposing)
         {
-            throw new NotImplementedException();
+            if (!_disposed)
+                if (disposing)
+                    shopDbContext.Dispose();
+            _disposed = true;
         }
-        
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
     }
 }

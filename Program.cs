@@ -1,5 +1,3 @@
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,9 +8,13 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-      
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
+
+    db.Database.EnsureDeleted();
+    db.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
