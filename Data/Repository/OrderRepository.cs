@@ -16,24 +16,24 @@
         public async Task<Order> GetOrderByIdAsync(int id) =>
             await shopDbContext.Orders.FindAsync(new object[] { id });
 
-        public Task CreateOrder(Order order)
+        public async Task CreateOrder(Order order)
         {
-            /*order.OrderDate = DateTime.Now;
-             var products = shopCart.ShopCartItems;*/
-            //do it
-            throw new NotImplementedException();
+            order.OrderDate = DateTime.Now;           
+            order.Products = shopCart.ShopCartItems;  
+            await shopDbContext.Orders.AddAsync(order);
+            await SaveAsync();
         }
 
-        public Task DeleteOrder(int orderId)
+        public async Task DeleteOrder(int orderId)
         {
-            throw new NotImplementedException();
+            var orderFromDb = await shopDbContext.Orders.FindAsync(new object[] {orderId});
+            shopDbContext.Orders.Remove(orderFromDb);
         }
-              
 
-        public Task SaveAsync()
-        {
-            throw new NotImplementedException();
-        }
+
+        public async Task SaveAsync() =>
+            await shopDbContext.SaveChangesAsync();    
+        
 
         private bool _disposed = false;
         protected virtual void Dispose(bool disposing)

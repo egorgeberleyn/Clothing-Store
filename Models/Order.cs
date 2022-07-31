@@ -42,6 +42,6 @@ namespace ClothingStore.Models
         [ScaffoldColumn(false)] //запрет на отображение в исходном коде(системное поле)
         public DateTime OrderDate { get; set; }       
         
-        public List<Product> Products { get; set; }
+        public List<ShopCartItem> Products { get; set; }
     }
 }
