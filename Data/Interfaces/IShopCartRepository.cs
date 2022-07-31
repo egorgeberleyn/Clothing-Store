@@ -1,9 +1,10 @@
 ﻿namespace ClothingStore.Data.Interfaces
 {
-    public interface IShopCartRepository
+    public interface IShopCartRepository : IDisposable
     {
-        ShopCart GetAsync(IServiceProvider service);
-        void AddItemAsync(Product item);
-        void DeleteItemAsync(int id);
+        ShopCart GetShopCart(IServiceProvider service);
+        void AddItem(Product item);
+        void DeleteItem(int id);
+        Task SaveAsync();
     }
 }

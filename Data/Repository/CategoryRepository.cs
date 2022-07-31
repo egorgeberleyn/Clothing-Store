@@ -8,20 +8,24 @@
             shopDbContext = context;
         }
 
-        public async Task<List<Category>> GetAllCategoriesAsync() =>        
-            await shopDbContext.Categories.ToListAsync();        
+        public async Task<List<Category>> GetAllCategoriesAsync() =>
+            await shopDbContext.Categories.ToListAsync();
 
-        public async Task<Category> GetCategoryAsync(int id) => 
-            await shopDbContext.Categories.FindAsync(new object[] {id});
-        
-        public async Task CreateCategoryAsync(Category category) =>        
+        public async Task<Category> GetCategoryAsync(int id) =>
+            await shopDbContext.Categories.FindAsync(new object[] { id });
+
+        public async Task CreateCategoryAsync(Category category)
+        {
             await shopDbContext.Categories.AddAsync(category);
+            await SaveAsync();
+        }
         
         public async Task DeleteCategoryAsync(int id)
         {
             var categoryFromDb = await shopDbContext.Categories.FindAsync(new object[] {id});
             if (categoryFromDb is null) return;
             shopDbContext.Categories.Remove(categoryFromDb);
+            await SaveAsync();
         }
                     
         public async Task UpdateCategoryAsync(Category category)
@@ -30,9 +34,11 @@
             if (categoryFromDb is null) return;
             categoryFromDb.Name = category.Name;
             categoryFromDb.Description = category.Description;
+            await SaveAsync();
         }
 
-        public async Task SaveAsync() => await shopDbContext.SaveChangesAsync();
+        public async Task SaveAsync() => 
+            await shopDbContext.SaveChangesAsync();
 
         private bool _disposed = false;
         protected virtual void Dispose(bool disposing)
