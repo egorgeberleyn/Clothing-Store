@@ -5,3 +5,4 @@ global using ClothingStore.Data.Interfaces;
 global using ClothingStore.Models;
 global using ClothingStore.Data;
 global using ClothingStore.ViewModels;
+global using ClothingStore.Data.Repository;

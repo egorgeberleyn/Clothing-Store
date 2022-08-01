@@ -11,12 +11,79 @@
     <link rel="stylesheet" type="text/css" href="~/css/style.css" />
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <img src="~/img/Aditii.png" alt="Logo" />
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <form class="search-bar" action="" method="get">
+                        <input class="search-place" name="s" placeholder="" type="text" />
+                        <button class="search-btn" type="submit"></button>
+                    </form>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="shopping">
+                        <a href="#shopping-cart" class="shopping-cart"><img src="/img/Shape 2.png" alt="shopping basket" /></a>
+                        <span class="shopping-cart-price">$@ViewBag.CartPrice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="navbar">
+        <div class="container">
+            <ul>
+                <li>
+                    <a class="nav-section" href="#home">HOME</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#womenstore">WOMEN STORE</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#accessories">ACCESSORIES</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#menstore">MEN STORE</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#shoes">SHOES</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#sale">SALE</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#vintage">VINTAGE</a>
+                    <span class="delimiter">|</span>
+                </li>
+
+                <li>
+                    <a class="nav-section" href="#profile">PROFILE</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li>
+                    <a class="nav-section" href="#services">SERVICES</a>
+                    <span class="delimiter">|</span>
+                </li>
+                <li><a class="nav-section" href="#contactus">CONTACT US</a></li>
+            </ul>
+        </div>
+    </div>
+
     @RenderBody()
-        
+
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/slick/slick.min.js"></script>
     <script src="~/js/main.js"></script>
-    
+
 </body>
 </html>

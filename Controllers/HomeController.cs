@@ -1,24 +1,28 @@
 ﻿namespace ClothingStore.Controllers
 {
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IProductRepository productRepository;
-        private readonly IShopCartRepository shopCartRepository;
+    {        
+        private readonly ShopDbContext _shopDbContext;
+        private readonly IProductRepository _productRepository;
+        private readonly IShopCartRepository _shopCartRepository;
+        
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
+        public HomeController(ShopDbContext shopDbContext, IProductRepository productRepository, 
+            IShopCartRepository shopCartRepository)
+        {           
+            _shopDbContext = shopDbContext;
+            _productRepository = productRepository;
+            _shopCartRepository = shopCartRepository;
         }
 
         public IActionResult Index()
         {            
             var favoriteProducts = new HomeViewModel() 
             { 
-                FavoriteProducts = productRepository.GetFavoriteProductsAsync()
+                FavoriteProducts = _productRepository.GetFavoriteProducts()
             };
             
-            ViewBag.CartPrice = shopCartRepository.GetShopCartItems().Select(x => x.Product.Price).Sum();
+            //ViewBag.CartPrice = _shopCartRepository.GetShopCartItems().Select(x => x.Product.Price).Sum();
             return View(favoriteProducts);
         }               
     }

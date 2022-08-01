@@ -2,12 +2,11 @@
 {
     public class ShopCartRepository : IShopCartRepository
     {        
-        private readonly ShopCart shopCart;
+        private readonly ShopCart shopCart = new();
         private readonly ShopDbContext shopDbContext;
-        public ShopCartRepository(ShopDbContext shopDbContext, ShopCart shopCart)
+        public ShopCartRepository(ShopDbContext shopDbContext)
         {
-            this.shopDbContext = shopDbContext; 
-            this.shopCart = shopCart;            
+            this.shopDbContext = shopDbContext;                         
         }             
         public ShopCart GetShopCart(IServiceProvider services)
         {
