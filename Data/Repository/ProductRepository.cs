@@ -11,7 +11,10 @@
         public async Task<List<Product>> GetAllProductsAsync(Category category) =>
            await shopDbContext.Products.Include(p => p.Category).ToListAsync();
 
-        public async Task<List<Product>> GetProductAsync(string name) =>
+        public async Task<List<Product>> GetFavoriteProductsAsync() => 
+            await shopDbContext.Products.Where(p => p.IsFavorite).ToListAsync();
+
+        public async Task<List<Product>> GetProductsByNameAsync(string name) =>
             await shopDbContext.Products.Where(p => p.Name.Contains(name)).ToListAsync();
 
         public async Task<Product> GetProductAsync(int id) =>

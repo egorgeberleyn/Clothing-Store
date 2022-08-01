@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ClothingStore.Controllers
+﻿namespace ClothingStore.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository productRepository;
+        private readonly IShopCartRepository shopCartRepository;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -12,8 +12,14 @@ namespace ClothingStore.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
+        {            
+            var favoriteProducts = new HomeViewModel() 
+            { 
+                FavoriteProducts = productRepository.GetFavoriteProductsAsync()
+            };
+            
+            ViewBag.CartPrice = shopCartRepository.GetShopCartItems().Select(x => x.Product.Price).Sum();
+            return View(favoriteProducts);
         }               
     }
 }

@@ -20,6 +20,8 @@
             return shopCart;
         }
 
+        public List<ShopCartItem> GetShopCartItems() => shopCart.ShopCartItems;
+
         public void AddItem(Product item)
         {
             shopCart.ShopCartItems.Add(new ShopCartItem
@@ -51,6 +53,6 @@
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }             
+        }               
     }
 }
