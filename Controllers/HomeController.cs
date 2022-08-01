@@ -22,7 +22,12 @@
                 FavoriteProducts = _productRepository.GetFavoriteProducts()
             };
             
-            //ViewBag.CartPrice = _shopCartRepository.GetShopCartItems().Select(x => x.Product.Price).Sum();
+            var shopCartItems = _shopCartRepository.GetShopCartItems();
+            var shopCartPrice = shopCartItems != null  
+                ? shopCartItems.Select(x => x.Product.Price).Sum() 
+                : 0;
+            
+            ViewBag.CartPrice = shopCartPrice;
             return View(favoriteProducts);
         }               
     }
