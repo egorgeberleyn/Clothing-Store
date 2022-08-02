@@ -1,15 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
+builder.Services.AddSession();
+
+//DI
 builder.Services.AddDbContext<ShopDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
-
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
-//builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IShopCartRepository, ShopCartRepository>();
 //builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddSession();
+
 
 var app = builder.Build();
 
@@ -20,17 +22,17 @@ if (app.Environment.IsDevelopment())
     var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
     db.Database.EnsureCreated();
 }   
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
 
-app.UseRouting();
-
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseMvcWithDefaultRoute();
+app.UseMvc(routes =>
+{   
+    routes.MapRoute(name: "categoryFilter", template: "{controller=Category}/{action=ProductList}/{category?}");
+});
 
 app.Run();

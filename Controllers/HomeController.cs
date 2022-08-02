@@ -21,13 +21,8 @@
             { 
                 FavoriteProducts = _productRepository.GetFavoriteProducts()
             };
-            
-            var shopCartItems = _shopCartRepository.GetShopCartItems();
-            var shopCartPrice = shopCartItems != null  
-                ? shopCartItems.Select(x => x.Product.Price).Sum() 
-                : 0;
-            
-            ViewBag.CartPrice = shopCartPrice;
+                                  
+            ViewBag.CartPrice = _shopCartRepository.CheckCartPrice();
             return View(favoriteProducts);
         }               
     }

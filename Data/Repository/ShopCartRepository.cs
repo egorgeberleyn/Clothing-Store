@@ -21,6 +21,11 @@
 
         public List<ShopCartItem> GetShopCartItems() => shopCart.ShopCartItems;
 
+        public decimal CheckCartPrice() =>                   
+           shopCart.ShopCartItems != null
+           ? shopCart.ShopCartItems.Select(x => x.Product.Price).Sum()
+           : 0;
+        
         public void AddItem(Product item)
         {
             shopCart.ShopCartItems.Add(new ShopCartItem
