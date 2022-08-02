@@ -14,6 +14,8 @@
         public async Task<Category> GetCategoryAsync(int id) =>
             await shopDbContext.Categories.FindAsync(new object[] { id });
 
+        public Category GetCategoryByName(string name) => shopDbContext.Categories.FirstOrDefault(c => c.Name.Equals(name));
+
         public async Task CreateCategoryAsync(Category category)
         {
             await shopDbContext.Categories.AddAsync(category);

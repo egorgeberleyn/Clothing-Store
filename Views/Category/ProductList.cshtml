@@ -1,0 +1,16 @@
+﻿@model ProductListViewModel
+
+<h1>@Model.CurrentCategory.Name</h1>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (var product in Model.ProductsByCategory)
+        {
+            <div class="col-lg-4">
+                <img class="img-thumbnail" src = "@product.ImageUrl" alt="@product.Name">
+                <h2>@product.Name</h2>                
+                <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>                
+            </div>
+        }
+    }
+</div>

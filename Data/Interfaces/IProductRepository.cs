@@ -2,7 +2,8 @@
 {
     public interface IProductRepository : IDisposable
     {
-        Task<List<Product>> GetAllProductsAsync(Category category);
+        List<Product> GetAllProducts();
+        Task<List<Product>> GetProductsByCategoryAsync(Category category);
         List<Product> GetFavoriteProducts();
         Task<List<Product>> GetProductsByNameAsync(string name);
         Task<Product> GetProductAsync(int id);

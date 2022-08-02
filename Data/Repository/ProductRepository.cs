@@ -8,7 +8,9 @@
             shopDbContext = context;
         }
 
-        public async Task<List<Product>> GetAllProductsAsync(Category category) =>
+        public List<Product> GetAllProducts() =>
+            shopDbContext.Products.ToList();
+        public async Task<List<Product>> GetProductsByCategoryAsync(Category category) =>
            await shopDbContext.Products.Include(p => p.Category).ToListAsync();
 
         public List<Product> GetFavoriteProducts() => 
