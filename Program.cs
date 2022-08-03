@@ -10,7 +10,13 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IShopCartRepository, ShopCartRepository>();
-//builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sp =>
+{
+    var shopCart = new ShopCart();
+    return shopCart.GetShopCart(sp);
+});
 
 
 var app = builder.Build();

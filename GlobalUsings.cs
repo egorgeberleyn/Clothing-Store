@@ -1,6 +1,7 @@
 ﻿global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.AspNetCore;
+global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
 
 global using ClothingStore;
 global using ClothingStore.Data.Interfaces;

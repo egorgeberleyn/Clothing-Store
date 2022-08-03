@@ -17,30 +17,25 @@ namespace ClothingStore.Controllers
 
         [Route("Category/ProductList")]
         [Route("Category/ProductList/{category}")]
-        public IActionResult ProductList(string category)
+        public async Task<IActionResult> ProductList(string category)
         {
             var allProducts = new List<Product>();            
             Category currentCategory = _categoryRepository.GetCategoryByName(category);
             if (string.IsNullOrEmpty(category))
             {
-                allProducts = _productRepository.GetAllProducts();
+                allProducts = await _productRepository.GetAllProductsAsync();
                 currentCategory = new Category { Name = "All Products"};
             }
-            else
-            {                
-                allProducts = _productRepository.GetAllProducts()
-                    .Where(i => string.Equals(i.Category.Id, currentCategory.Id))
-                    .Select(x => x)
-                    .ToList();                                    
-            }
-
+            else            
+                allProducts = await _productRepository
+                    .GetProductsByCategoryAsync(currentCategory);
+                                                                   
             var model = new ProductListViewModel
             {
                 ProductsByCategory = allProducts,
                 CurrentCategory = currentCategory,
             };
-
-            ViewBag.Title = "EShop";                                            
+                                                        
             return View(model);
         }
     }

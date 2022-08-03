@@ -2,7 +2,7 @@
 {
     public interface IShopCartRepository : IDisposable
     {
-        ShopCart GetShopCart(IServiceProvider service);
+        //ShopCart GetShopCart(IServiceProvider service);
         List<ShopCartItem> GetShopCartItems();
         decimal CheckCartPrice();
         void AddItem(Product item);

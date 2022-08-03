@@ -15,11 +15,11 @@
             _shopCartRepository = shopCartRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {            
             var favoriteProducts = new HomeViewModel() 
             { 
-                FavoriteProducts = _productRepository.GetFavoriteProducts()
+                FavoriteProducts = await _productRepository.GetFavoriteProductsAsync()
             };
                                   
             ViewBag.CartPrice = _shopCartRepository.CheckCartPrice();

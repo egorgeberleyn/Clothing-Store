@@ -2,23 +2,14 @@
 {
     public class ShopCartRepository : IShopCartRepository
     {        
-        private readonly ShopCart shopCart = new();
+        private readonly ShopCart shopCart;
         private readonly ShopDbContext shopDbContext;
-        public ShopCartRepository(ShopDbContext shopDbContext)
+        public ShopCartRepository(ShopDbContext shopDbContext, ShopCart shopCart)
         {
-            this.shopDbContext = shopDbContext;                         
+            this.shopDbContext = shopDbContext;
+            this.shopCart = shopCart;
         }             
-        public ShopCart GetShopCart(IServiceProvider services)
-        {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-            //var context = services.GetService<ShopDbContext>();
-            byte[] shopCartId = session.Get("CartId") ?? Guid.NewGuid().ToByteArray();
-
-            session.Set("CartId", shopCartId);
-            shopCart.Id = BitConverter.ToInt32(shopCartId, 0);
-            return shopCart;
-        }
-
+        
         public List<ShopCartItem> GetShopCartItems() => shopCart.ShopCartItems;
 
         public decimal CheckCartPrice() =>                   

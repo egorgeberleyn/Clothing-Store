@@ -8,13 +8,13 @@
             shopDbContext = context;
         }
 
-        public List<Product> GetAllProducts() =>
-            shopDbContext.Products.ToList();
+        public Task<List<Product>> GetAllProductsAsync() =>
+            shopDbContext.Products.ToListAsync();
         public async Task<List<Product>> GetProductsByCategoryAsync(Category category) =>
-           await shopDbContext.Products.Include(p => p.Category).ToListAsync();
+           await shopDbContext.Products.Where(p => p.Category.Equals(category)).ToListAsync();
 
-        public List<Product> GetFavoriteProducts() => 
-            shopDbContext.Products.Where(p => p.IsFavorite).ToList();
+        public async Task<List<Product>> GetFavoriteProductsAsync() => 
+            await shopDbContext.Products.Where(p => p.IsFavorite).ToListAsync();
 
         public async Task<List<Product>> GetProductsByNameAsync(string name) =>
             await shopDbContext.Products.Where(p => p.Name.Contains(name)).ToListAsync();
