@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
+builder.Services.AddScoped(sp => SessionShopCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 //DI
 builder.Services.AddDbContext<ShopDbContext>(options =>
@@ -33,6 +35,9 @@ app.UseMvcWithDefaultRoute();
 app.UseMvc(routes =>
 {   
     routes.MapRoute(name: "categoryFilter", template: "{controller=Category}/{action=ProductList}/{category?}");
+    routes.MapRoute(name: "shopCart", template: "{controller=ShopCart}/{action=Cart}");
+    routes.MapRoute(name: "AddshopCart", template: "{controller=ShopCart}/{action=AddToCart}/{id}");
+    routes.MapRoute(name: "DeleteshopCart", template: "{controller=ShopCart}/{action=DeleteFromCart}/{id}");
 });
 
 app.Run();

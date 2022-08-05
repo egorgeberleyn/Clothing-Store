@@ -2,11 +2,13 @@
 {
     public class HomeController : Controller
     {                
-        private readonly IProductRepository _productRepository;        
+        private readonly IProductRepository _productRepository;
+        private ShopCart _shopCart;
 
-        public HomeController(IProductRepository productRepository)
+        public HomeController(IProductRepository productRepository, ShopCart shopCart)
         {                       
-            _productRepository = productRepository;            
+            _productRepository = productRepository;
+            _shopCart = shopCart;
         }
 
         public async Task<IActionResult> Index()
@@ -17,19 +19,8 @@
             };
                                   
             
-            ViewBag.CartPrice = GetCart().ComputeCartPrice();
+            ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View(favoriteProducts);
-        }
-
-        public ShopCart GetCart()
-        {
-            ShopCart cart = HttpContext.Session.GetJson<ShopCart>("Cart")
-                ?? new ShopCart();
-            return cart;
-        }
-        public void SaveCart(ShopCart cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-        }
+        }        
     }
 }

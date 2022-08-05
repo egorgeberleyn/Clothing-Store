@@ -5,12 +5,12 @@
         public int Id { get; set; }
         public List<ShopCartItem> ShopCartItems { get; set; } = new List<ShopCartItem>();
                       
-        public decimal ComputeCartPrice() =>
+        public virtual decimal ComputeCartPrice() =>
            ShopCartItems != null
            ? ShopCartItems.Sum(item => item.Quantity * item.Product.Price)
            : 0;
 
-        public void AddItem(Product item, int quantity)
+        public virtual void AddItem(Product item, int quantity)
         {
             var shopItem = ShopCartItems.Where(p => p.Product.Id == item.Id)
                                         .FirstOrDefault();
@@ -25,7 +25,14 @@
                 shopItem.Quantity += quantity;
         }
 
-        public void DeleteItem(int id) =>         
-            ShopCartItems.RemoveAll(p => p.Id == id);        
+        public virtual void DeleteItem(int id)
+        {
+            var shopItem = ShopCartItems.Where(p => p.Product.Id == id)
+                                        .FirstOrDefault();
+            if (shopItem != null)
+                ShopCartItems.Remove(shopItem);
+        }
+        
+        public virtual void Clear() => ShopCartItems.Clear();
     }
 }

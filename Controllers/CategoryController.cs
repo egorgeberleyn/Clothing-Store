@@ -6,12 +6,14 @@ namespace ClothingStore.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private ShopCart _shopCart;
                
         public CategoryController(IProductRepository productRepository, 
-            ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository, ShopCart shopCart)
         {
             _productRepository = productRepository;            
             _categoryRepository = categoryRepository;
+            _shopCart = shopCart;
         }
 
         [Route("Category/ProductList")]
@@ -36,15 +38,8 @@ namespace ClothingStore.Controllers
             };
 
             
-            ViewBag.CartPrice = GetCart().ComputeCartPrice();
+            ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View(model);            
-        }
-        
-        public ShopCart GetCart()
-        {
-            ShopCart cart = HttpContext.Session.GetJson<ShopCart>("Cart")
-                ?? new ShopCart();
-            return cart;
-        }
+        }               
     }
 }

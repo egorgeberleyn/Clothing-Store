@@ -5,7 +5,9 @@
     {
         <div class="bg-opacity-25 bg-success mb-2">
             <b>ShopItem:</b> @item.Product.Name<br>
-            <b>Price:</b> @item.Product.Price.ToString("c", new CultureInfo("en-US"))
+            <b>Price:</b> @item.Product.Price.ToString("c", new CultureInfo("en-US"))<br>
+            <b>Quantity:</b> @item.Quantity
+            <p><a class="btn btn-danger" asp-controller="ShopCart" asp-action="DeleteFromCart" asp-route-id="@item.Product.Id">Delete</a></p>
         </div>
     }
     <hr />
