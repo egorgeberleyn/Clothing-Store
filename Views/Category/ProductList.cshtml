@@ -9,7 +9,8 @@
             <div class="col-lg-4">
                 <img class="img-thumbnail" src = "@product.ImageUrl" alt="@product.Name">
                 <h2>@product.Name</h2>                
-                <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>                
+                <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>     
+                <p><a class="btn btn-info" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">Add to cart</a></p>
             </div>
         }
     }

@@ -1,18 +1,12 @@
 ﻿namespace ClothingStore.Controllers
 {
     public class HomeController : Controller
-    {        
-        private readonly ShopDbContext _shopDbContext;
-        private readonly IProductRepository _productRepository;
-        private readonly IShopCartRepository _shopCartRepository;
-        
+    {                
+        private readonly IProductRepository _productRepository;        
 
-        public HomeController(ShopDbContext shopDbContext, IProductRepository productRepository, 
-            IShopCartRepository shopCartRepository)
-        {           
-            _shopDbContext = shopDbContext;
-            _productRepository = productRepository;
-            _shopCartRepository = shopCartRepository;
+        public HomeController(IProductRepository productRepository)
+        {                       
+            _productRepository = productRepository;            
         }
 
         public async Task<IActionResult> Index()
@@ -22,8 +16,20 @@
                 FavoriteProducts = await _productRepository.GetFavoriteProductsAsync()
             };
                                   
-            ViewBag.CartPrice = _shopCartRepository.CheckCartPrice();
+            
+            ViewBag.CartPrice = GetCart().ComputeCartPrice();
             return View(favoriteProducts);
-        }               
+        }
+
+        public ShopCart GetCart()
+        {
+            ShopCart cart = HttpContext.Session.GetJson<ShopCart>("Cart")
+                ?? new ShopCart();
+            return cart;
+        }
+        public void SaveCart(ShopCart cart)
+        {
+            HttpContext.Session.SetJson("Cart", cart);
+        }
     }
 }

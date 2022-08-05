@@ -1,6 +1,6 @@
 ﻿namespace ClothingStore.Data.Interfaces
 {
-    public interface IOrderRepository : IDisposable
+    public interface IOrderRepository
     {
         Task<List<Order>> GetAllOrdersAsync();
         //Task<Order> GetOrderAsync(int number); do it

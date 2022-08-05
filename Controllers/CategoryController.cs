@@ -6,12 +6,11 @@ namespace ClothingStore.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly ShopDbContext _shopDbContext;
+               
         public CategoryController(IProductRepository productRepository, 
-            ShopDbContext shopDbContext, ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository)
         {
-            _productRepository = productRepository;
-            _shopDbContext = shopDbContext;
+            _productRepository = productRepository;            
             _categoryRepository = categoryRepository;
         }
 
@@ -19,7 +18,7 @@ namespace ClothingStore.Controllers
         [Route("Category/ProductList/{category}")]
         public async Task<IActionResult> ProductList(string category)
         {
-            var allProducts = new List<Product>();            
+            List<Product> allProducts;            
             Category currentCategory = _categoryRepository.GetCategoryByName(category);
             if (string.IsNullOrEmpty(category))
             {
@@ -35,8 +34,17 @@ namespace ClothingStore.Controllers
                 ProductsByCategory = allProducts,
                 CurrentCategory = currentCategory,
             };
-                                                        
-            return View(model);
+
+            
+            ViewBag.CartPrice = GetCart().ComputeCartPrice();
+            return View(model);            
+        }
+        
+        public ShopCart GetCart()
+        {
+            ShopCart cart = HttpContext.Session.GetJson<ShopCart>("Cart")
+                ?? new ShopCart();
+            return cart;
         }
     }
 }

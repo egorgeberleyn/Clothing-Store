@@ -50,20 +50,6 @@
             await SaveAsync();
         }       
         public async Task SaveAsync() => 
-            await shopDbContext.SaveChangesAsync();
-
-        private bool _disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-                if (disposing)
-                    shopDbContext.Dispose();
-            _disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            await shopDbContext.SaveChangesAsync();        
     }
 }

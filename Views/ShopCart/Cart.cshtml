@@ -1,0 +1,13 @@
+﻿@model ShopCartViewModel
+
+<div class="container">
+    @foreach(var item in Model.ShopCart.ShopCartItems)
+    {
+        <div class="bg-opacity-25 bg-success mb-2">
+            <b>ShopItem:</b> @item.Product.Name<br>
+            <b>Price:</b> @item.Product.Price.ToString("c", new CultureInfo("en-US"))
+        </div>
+    }
+    <hr />
+    <!--<a class="btn btn-danger" asp-controller="Order" asp-action="Checkout">Buy</a>   -->
+</div>

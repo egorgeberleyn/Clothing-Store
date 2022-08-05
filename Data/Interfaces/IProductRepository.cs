@@ -1,6 +1,6 @@
 ﻿namespace ClothingStore.Data.Interfaces
 {
-    public interface IProductRepository : IDisposable
+    public interface IProductRepository
     {
         Task<List<Product>> GetAllProductsAsync();
         Task<List<Product>> GetProductsByCategoryAsync(Category category);

@@ -3,11 +3,10 @@
     public class OrderRepository : IOrderRepository
     {
         private readonly ShopDbContext shopDbContext;
-        private readonly ShopCart shopCart;
-        public OrderRepository(ShopDbContext shopDbContext, ShopCart shopCart)
+        //private readonly ShopCart shopCart;
+        public OrderRepository(ShopDbContext shopDbContext)
         {
-            this.shopDbContext = shopDbContext;  
-            this.shopCart = shopCart;
+            this.shopDbContext = shopDbContext;              
         }
 
         public async Task<List<Order>> GetAllOrdersAsync() =>
@@ -19,7 +18,7 @@
         public async Task CreateOrder(Order order)
         {
             order.OrderDate = DateTime.Now;           
-            order.Products = shopCart.ShopCartItems;  
+            //order.Products = shopCart.ShopCartItems;  
             await shopDbContext.Orders.AddAsync(order);
             await SaveAsync();
         }
@@ -32,21 +31,6 @@
 
 
         public async Task SaveAsync() =>
-            await shopDbContext.SaveChangesAsync();    
-        
-
-        private bool _disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-                if (disposing)
-                    shopDbContext.Dispose();
-            _disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+            await shopDbContext.SaveChangesAsync();                   
     }
 }
