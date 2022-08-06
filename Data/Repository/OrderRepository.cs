@@ -3,10 +3,11 @@
     public class OrderRepository : IOrderRepository
     {
         private readonly ShopDbContext shopDbContext;
-        //private readonly ShopCart shopCart;
-        public OrderRepository(ShopDbContext shopDbContext)
+        private readonly ShopCart shopCart;
+        public OrderRepository(ShopDbContext shopDbContext, ShopCart shopCart)
         {
-            this.shopDbContext = shopDbContext;              
+            this.shopDbContext = shopDbContext;
+            this.shopCart = shopCart;
         }
 
         public async Task<List<Order>> GetAllOrdersAsync() =>
@@ -18,7 +19,7 @@
         public async Task CreateOrder(Order order)
         {
             order.OrderDate = DateTime.Now;           
-            //order.Products = shopCart.ShopCartItems;  
+            order.Products = shopCart.ShopCartItems;  
             await shopDbContext.Orders.AddAsync(order);
             await SaveAsync();
         }

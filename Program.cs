@@ -38,6 +38,7 @@ app.UseMvc(routes =>
     routes.MapRoute(name: "shopCart", template: "{controller=ShopCart}/{action=Cart}");
     routes.MapRoute(name: "AddshopCart", template: "{controller=ShopCart}/{action=AddToCart}/{id}");
     routes.MapRoute(name: "DeleteshopCart", template: "{controller=ShopCart}/{action=DeleteFromCart}/{id}");
+    routes.MapRoute(name: "order", template: "{controller=Order}/{action=Checkout}/{order}");
 });
 
 app.Run();

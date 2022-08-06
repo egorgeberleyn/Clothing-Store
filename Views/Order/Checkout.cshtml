@@ -1,0 +1,44 @@
+﻿@model Order
+
+<div class="container">
+    <h3>Ordering</h3>
+    <form asp-action="Checkout" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="CustomerName"></label>
+            <div class="col-md-5">
+                <input asp-for="CustomerName" class="form-control"/>
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CustomerSurname"></label>
+            <div class="col-md-5">
+                <input asp-for="CustomerSurname" class="form-control"/>
+                <span asp-validation-for="CustomerSurname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress"></label>
+            <div class="col-md-5">
+                <input asp-for="Adress" class="form-control"/>
+                <span asp-validation-for="Adress" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <div class="col-md-5">
+                <input asp-for="Phone" class="form-control"/>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label asp-for="Email"></label>
+            <div class="col-md-5">
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-success mt-2" type="submit" value="Complete order" />
+
+    </form>
+</div>
