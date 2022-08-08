@@ -9,7 +9,7 @@ namespace ClothingStore.Models
         public int Id { get; set; }
         
 
-        [Display(Name = "Enter name")]
+        [Display(Name = "Name")]
         [StringLength(20)]
         [Required(ErrorMessage = "Name must match the format")]
         public string CustomerName { get; set; }
@@ -20,19 +20,17 @@ namespace ClothingStore.Models
         [Required(ErrorMessage = "Surname must match the format")] 
         public string CustomerSurname { get; set; }
 
-
-        [Display(Name = "Adress")]
+        
         [StringLength(70)]
         [Required(ErrorMessage = "Adress must match the format")]
         public string Adress { get; set; }
 
-        
-        [Display(Name = "Phone")]
+               
         [DataType(DataType.PhoneNumber)]
         [StringLength(13)]        
         public string Phone { get; set; }
-
-        [Display(Name = "Email")]
+        
+        
         [DataType(DataType.EmailAddress)]
         [StringLength(40)]
         [Required(ErrorMessage = "Email adress must match the format")]

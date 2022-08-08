@@ -30,7 +30,5 @@ namespace ClothingStore.Data
                 new Product { Id = 3, CategoryId = manStore.Id, Name = "MEN'S COAT", ImageUrl = "/img/branded/coat.png", Price = 140, IsFavorite = true}
                 );
         }
-
-        public DbSet<ClothingStore.Models.ShopCart> ShopCart { get; set; }
     }
 }

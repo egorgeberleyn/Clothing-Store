@@ -11,6 +11,7 @@
             _shopCart = shopCart;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {            
             var favoriteProducts = new HomeViewModel() 

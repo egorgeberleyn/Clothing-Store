@@ -21,7 +21,7 @@ namespace ClothingStore.Controllers
         public async Task<IActionResult> ProductList(string category)
         {
             List<Product> allProducts;            
-            Category currentCategory = _categoryRepository.GetCategoryByName(category);
+            Category currentCategory = await _categoryRepository.GetCategoryByNameAsync(category);
             if (string.IsNullOrEmpty(category))
             {
                 allProducts = await _productRepository.GetAllProductsAsync();
@@ -40,6 +40,13 @@ namespace ClothingStore.Controllers
             
             ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View(model);            
-        }               
+        }
+
+        [Route("Category/CreateProduct/{category}")]
+        public async Task<IActionResult> CreateProduct(string category)
+        {
+            Category currentCategory = await _categoryRepository.GetCategoryByNameAsync(category);
+            return View(new Product { Category=currentCategory, CategoryId=currentCategory.Id});    
+        }
     }
 }

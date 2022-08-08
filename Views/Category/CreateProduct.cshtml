@@ -1,0 +1,41 @@
+﻿@model Product
+
+<div class="container">
+    <h3>Product creation</h3>
+    <form asp-action="Checkout" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <div class="col-md-5">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <div class="col-md-5">
+                <textarea asp-for="Price" class="form-label" rows="2"></textarea>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <div class="col-md-5">
+                <textarea asp-for="Description" class="form-label" rows="2"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Available"></label>
+            <div class="col-md-5">
+                <input asp-for="Available" class="form-" />
+                <span asp-validation-for="Available" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" class="form-check-input" asp-for="IsFavorite">
+            <label class="form-check-label" asp-for="IsFavorite">Add to favorites</label>
+            <span asp-validation-for="IsFavorite" class="text-danger"></span>
+        </div>
+        <input class="btn btn-primary mt-2" type="submit" value="Create" />
+    </form>
+</div>

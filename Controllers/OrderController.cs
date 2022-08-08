@@ -15,30 +15,35 @@
             if (_shopCart.ShopCartItems.Count == 0)
             {
                 ModelState.AddModelError("", "Shop cart is empty");                
-                return RedirectToAction("Complete");
+                return RedirectToAction("Error");
             }
             ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View();
         }
-
+            
         [HttpPost]
         public IActionResult Checkout(Order order)
-        {                       
+        {            
             if (ModelState.IsValid)
-            {
+            {                
                 _orderRepository.CreateOrder(order);                
                 return RedirectToAction("Complete");
             }
+            
             ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View(order);
         }
 
         public IActionResult Complete()
-        {            
-            if(ModelState.MaxAllowedErrors > 0)
-                ViewBag.Message = "Order is not complete";
-            else
-                ViewBag.Message = "Order is complete";
+        {
+            ViewBag.Message = "Order is complete";
+            ViewBag.CartPrice = _shopCart.ComputeCartPrice();
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            ViewBag.Message = "Shopping cart is empty";
             ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View();
         }

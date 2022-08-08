@@ -1,17 +1,23 @@
 ﻿@model ProductListViewModel
 
-<h1>@Model.CurrentCategory.Name</h1>
+<div class="container">
+    <h1>@Model.CurrentCategory.Name</h1>
+    <p>
+        <a class="btn btn-primary" asp-controller="Category" asp-action="CreateProduct"
+           asp-route-category="@Model.CurrentCategory.Name">Create</a>
+    </p>
 
-<div class="row mt-5 mb-2">
-    @{
-        foreach (var product in Model.ProductsByCategory)
-        {
-            <div class="col-lg-4">
-                <img class="img-thumbnail" src = "@product.ImageUrl" alt="@product.Name">
-                <h2>@product.Name</h2>                
-                <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>     
-                <p><a class="btn btn-info" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">Add to cart</a></p>
-            </div>
+    <div class="row mt-5 mb-2">
+        @{
+            foreach (var product in Model.ProductsByCategory)
+            {
+                <div class="col-lg-4">
+                    <img class="img-thumbnail" src="@product.ImageUrl" alt="@product.Name">
+                    <h2>@product.Name</h2>
+                    <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>
+                    <p><a class="btn btn-info" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">Add to cart</a></p>
+                </div>
+            }
         }
-    }
+    </div>
 </div>
