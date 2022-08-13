@@ -3,8 +3,7 @@
 <div class="container">
     <h1>@Model.CurrentCategory.Name</h1>
     <p>
-        <a class="btn btn-primary" asp-controller="Category" asp-action="CreateProduct"
-           asp-route-category="@Model.CurrentCategory.Name">Create</a>
+        <a class="btn btn-primary" asp-controller="Category" asp-action="CreateProduct">Create</a>
     </p>
 
     <div class="row mt-5 mb-2">
@@ -17,7 +16,13 @@
                     <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>
                     <p><a class="btn btn-info" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">Add to cart</a></p>
                 </div>
-            }
+            }           
         }
+    </div>
+    <div class="row m-2">
+        <div page-model="@Model.PageInfo" page-action="ProductList" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" class="btn-group pull-right offset-lg-5 col-lg-1">
+        </div>
     </div>
 </div>

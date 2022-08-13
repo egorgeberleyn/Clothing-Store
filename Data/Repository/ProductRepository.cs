@@ -10,8 +10,12 @@
 
         public Task<List<Product>> GetAllProductsAsync() =>
             shopDbContext.Products.ToListAsync();
-        public async Task<List<Product>> GetProductsByCategoryAsync(Category category) =>
-           await shopDbContext.Products.Where(p => p.Category.Equals(category)).ToListAsync();
+        
+        public async Task<List<Product>> GetProductsByCategoryAsync(Category category, int page, int pageSize) =>
+           await shopDbContext.Products.Where(p => p.Category.Equals(category))
+                                       .Skip((page-1)*pageSize)
+                                       .Take(pageSize)
+                                       .ToListAsync();
 
         public async Task<List<Product>> GetFavoriteProductsAsync() => 
             await shopDbContext.Products.Where(p => p.IsFavorite).ToListAsync();

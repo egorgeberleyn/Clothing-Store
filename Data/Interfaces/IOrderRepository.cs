@@ -6,8 +6,8 @@
         //Task<Order> GetOrderAsync(int number); do it
         Task<Order> GetOrderByIdAsync(int id);
 
-        Task CreateOrder(Order order);
-        Task DeleteOrder(int orderId);
+        Task CreateOrderAsync(Order order);
+        Task DeleteOrderAsync(int orderId);
         Task SaveAsync();
     }
 }

@@ -22,11 +22,12 @@ if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
-    //db.Database.EnsureDeleted();
+    db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
 }   
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStatusCodePages();
 app.UseSession();
 
 app.UseAuthorization();
@@ -35,11 +36,13 @@ app.UseAuthorization();
 app.UseMvcWithDefaultRoute();
 app.UseMvc(routes =>
 {   
-    routes.MapRoute(name: "categoryFilter", template: "{controller=Category}/{action=ProductList}/{category?}");
+    routes.MapRoute(name: "pagination", template: "{controller=Category}/{action=ProductList}/{category}/{page?}");
     routes.MapRoute(name: "shopCart", template: "{controller=ShopCart}/{action=Cart}");
     routes.MapRoute(name: "AddshopCart", template: "{controller=ShopCart}/{action=AddToCart}/{id}");
     routes.MapRoute(name: "DeleteshopCart", template: "{controller=ShopCart}/{action=DeleteFromCart}/{id}");
     routes.MapRoute(name: "order", template: "{controller=Order}/{action=Checkout}/{order}");
 });
+
+app.UseDeveloperExceptionPage();
 
 app.Run();

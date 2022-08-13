@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ClothingStore.Controllers
+﻿namespace ClothingStore.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private ShopCart _shopCart;
-               
+        public int PageSize = 3;
+                       
         public CategoryController(IProductRepository productRepository, 
             ICategoryRepository categoryRepository, ShopCart shopCart)
         {
@@ -16,37 +15,50 @@ namespace ClothingStore.Controllers
             _shopCart = shopCart;
         }
 
-        [Route("Category/ProductList")]
-        [Route("Category/ProductList/{category}")]
-        public async Task<IActionResult> ProductList(string category)
+        [Route("Category/ProductList/{category}/{page?}")]
+        public async Task<IActionResult> ProductList(string category, int page = 1)
         {
-            List<Product> allProducts;            
-            Category currentCategory = await _categoryRepository.GetCategoryByNameAsync(category);
-            if (string.IsNullOrEmpty(category))
-            {
-                allProducts = await _productRepository.GetAllProductsAsync();
-                currentCategory = new Category { Name = "All Products"};
-            }
-            else            
-                allProducts = await _productRepository
-                    .GetProductsByCategoryAsync(currentCategory);
-                                                                   
+            Category currentCategory = await _categoryRepository
+                    .GetCategoryByNameAsync(category);
+            List<Product> products = await _productRepository
+                    .GetProductsByCategoryAsync(currentCategory, page, PageSize); ;
+
             var model = new ProductListViewModel
             {
-                ProductsByCategory = allProducts,
+                ProductsByCategory = products,
                 CurrentCategory = currentCategory,
-            };
-
-            
+                PageInfo = new PageInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = _productRepository.GetAllProductsAsync().Result.Count
+                }
+            };                                           
             ViewBag.CartPrice = _shopCart.ComputeCartPrice();
             return View(model);            
         }
+      
+        public IActionResult CreateProduct()
+        {            
+            return View();    
+        }
 
-        [Route("Category/CreateProduct/{category}")]
-        public async Task<IActionResult> CreateProduct(string category)
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(Product product)
         {
-            Category currentCategory = await _categoryRepository.GetCategoryByNameAsync(category);
-            return View(new Product { Category=currentCategory, CategoryId=currentCategory.Id});    
+            if (ModelState.IsValid)
+            {
+                product.Category = await _categoryRepository.GetCategoryByNameAsync(product.Category.Name);                
+                await _productRepository.CreateProductAsync(product);
+                return RedirectToAction("Complete");
+            }
+            return View(product);
+        }
+
+        public IActionResult Complete()
+        {
+            ViewBag.Message = "Product is created";            
+            return View();
         }
     }
 }

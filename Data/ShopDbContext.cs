@@ -27,7 +27,10 @@ namespace ClothingStore.Data
                 .HasData(
                 new Product { Id = 1, CategoryId = manStore.Id, Name = "VANS T-SHIRT", ImageUrl = "/img/branded/vans_tshirt.png", Price = 30, IsFavorite = true },
                 new Product { Id = 2, CategoryId = manStore.Id, Name = "RUBY SWEATER", ImageUrl = "/img/branded/sweater.png", Price = 65, IsFavorite = true},
-                new Product { Id = 3, CategoryId = manStore.Id, Name = "MEN'S COAT", ImageUrl = "/img/branded/coat.png", Price = 140, IsFavorite = true}
+                new Product { Id = 3, CategoryId = manStore.Id, Name = "MEN'S COAT", ImageUrl = "/img/branded/coat.png", Price = 140, IsFavorite = true},
+                new Product { Id = 4, CategoryId = manStore.Id, Name = "VANS T-SHIRT", ImageUrl = "/img/hoodie.png", Price = 30, IsFavorite = false },
+                new Product { Id = 5, CategoryId = manStore.Id, Name = "RUBY SWEATER", ImageUrl = "/img/hoodie2.png", Price = 65, IsFavorite = false },
+                new Product { Id = 6, CategoryId = manStore.Id, Name = "MEN'S COAT", ImageUrl = "/img/jeans.png", Price = 140, IsFavorite = false }            
                 );
         }
     }

@@ -16,15 +16,15 @@
         public async Task<Order> GetOrderByIdAsync(int id) =>
             await shopDbContext.Orders.FindAsync(new object[] { id });
 
-        public async Task CreateOrder(Order order)
+        public async Task CreateOrderAsync(Order order)
         {
             order.OrderDate = DateTime.Now;           
-            order.Products = shopCart.ShopCartItems;  
+            //order.Items = shopCart.ShopCartItems;  
             await shopDbContext.Orders.AddAsync(order);
             await SaveAsync();
         }
 
-        public async Task DeleteOrder(int orderId)
+        public async Task DeleteOrderAsync(int orderId)
         {
             var orderFromDb = await shopDbContext.Orders.FindAsync(new object[] {orderId});
             shopDbContext.Orders.Remove(orderFromDb);

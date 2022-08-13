@@ -22,11 +22,11 @@
         }
             
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        public async Task<IActionResult> Checkout(Order order)
         {            
             if (ModelState.IsValid)
             {                
-                _orderRepository.CreateOrder(order);                
+                await _orderRepository.CreateOrderAsync(order);                
                 return RedirectToAction("Complete");
             }
             

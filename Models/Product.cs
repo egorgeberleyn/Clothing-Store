@@ -14,7 +14,7 @@
         public bool IsFavorite { get; set; }
         [Required]
         public decimal Price { get; set; } = 0;
-        public string Available { get; set; } //наличие товара
+        public int Available { get; set; } = 0; //наличие товара
         public string Description { get; set; }
 
         public Category Category { get; set; }

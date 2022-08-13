@@ -4,5 +4,6 @@
     {
         public Category CurrentCategory { get; set; }
         public List<Product> ProductsByCategory { get; set; }
+        public PageInfo PageInfo { get; set; }
     }
 }
