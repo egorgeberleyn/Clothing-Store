@@ -7,7 +7,10 @@ namespace ClothingStore.Models
     {
         [BindNever]//поле не будет отображаться в ui
         public int Id { get; set; }
-        
+
+        [BindNever]
+        public bool Shipped { get; set; }
+
         [Display(Name = "Name")]
         [StringLength(20)]
         [Required(ErrorMessage = "Name must match the format")]
@@ -38,6 +41,6 @@ namespace ClothingStore.Models
         [BindNever]
         [ScaffoldColumn(false)] //запрет на отображение в исходном коде(системное поле)
         public DateTime OrderDate { get; set; }       
-        public List<ShopCartItem> Items { get; set; }
+        public ICollection<ShopCartItem> Items { get; set; }
     }
 }
