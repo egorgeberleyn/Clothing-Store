@@ -4,7 +4,7 @@
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private ShopCart _shopCart;
+        private readonly ShopCart _shopCart;
         public int PageSize = 3;
                        
         public CategoryController(IProductRepository productRepository, 
@@ -21,7 +21,7 @@
             Category currentCategory = await _categoryRepository
                     .GetCategoryByNameAsync(category);
             List<Product> products = await _productRepository
-                    .GetProductsByCategoryAsync(currentCategory, page, PageSize); ;
+                    .GetProductsOnPageAsync(currentCategory, page, PageSize); ;
 
             var model = new ProductListViewModel
             {
@@ -31,13 +31,14 @@
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = _productRepository.GetAllProductsAsync().Result.Count
+                    TotalItems = _productRepository.GetProductsByCategoryAsync(currentCategory)
+                                                   .Result.Count
                 }
-            };                                           
-            ViewBag.CartPrice = _shopCart.ComputeCartPrice();
+            };                                                       
             return View(model);            
         }
-      
+
+        [HttpGet]
         public IActionResult CreateProduct()
         {            
             return View();    

@@ -17,8 +17,7 @@
             var cart = new ShopCartViewModel
             {
                 ShopCart = _shopCart
-            };
-            ViewBag.CartPrice = cart.ShopCart.ComputeCartPrice();
+            };            
             return View(cart);
         }
 

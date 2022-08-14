@@ -56,7 +56,10 @@ header {
 }
 
 .shopping {
-  margin-left: 50px;
+        margin-left: 15px;
+}
+.shopping a {
+    text-decoration: none;
 }
 
 .shopping-cart:hover {
@@ -64,8 +67,8 @@ header {
 }
 
 .shopping-cart-price {
-  font-size: 30px;
-  padding-left: 8px;
+  font-size: 28px;
+  padding-left: -20px;
   color: #6d6d6d;
   font-family: 'Bebas Neue', cursive;
   vertical-align: top;

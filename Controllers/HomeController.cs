@@ -3,7 +3,7 @@
     public class HomeController : Controller
     {                
         private readonly IProductRepository _productRepository;
-        private ShopCart _shopCart;
+        private readonly ShopCart _shopCart;
 
         public HomeController(IProductRepository productRepository, ShopCart shopCart)
         {                       
@@ -17,10 +17,7 @@
             var favoriteProducts = new HomeViewModel() 
             { 
                 FavoriteProducts = await _productRepository.GetFavoriteProductsAsync()
-            };
-                                  
-            
-            ViewBag.CartPrice = _shopCart.ComputeCartPrice();
+            };                                                         
             return View(favoriteProducts);
         }        
     }
