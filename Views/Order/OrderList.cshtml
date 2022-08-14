@@ -6,12 +6,34 @@
 
 @if (Model.Count() > 0) {
     <table class="table table-bordered table-striped">
-        <tr><th>Customer Name</th><th>Product</th><th colspan="2">Details</th><th></th></tr>
+        <tr><th>Customer Name</th><th>Adress</th><th colspan="2">Details</th><th></th></tr>
         @foreach (Order order in Model) {
-            
-    
+            <tr>
+                <td>@order.CustomerName @order.CustomerSurname</td>
+                <td>@order.Adress</td>
+                <th>Product</th>
+                <th>Quantity</th>                
+                <td>
+                    <form asp-action="MarkShipped" method="post">
+                        <input type="hidden" name="orderId" value="@order.Id"/>
+                        <button type="submit" class="btn btn-sm btn-dark">Ship</button>
+                    </form>
+                </td>
+            </tr>  
+            @foreach (ShopCartItem item in order.Items)
+            {
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td></td>
+                </tr>
+            }
         }
     </table>
+}
+else {
+    <div class="text-center">No unshipped orders</div>
 }
 
     

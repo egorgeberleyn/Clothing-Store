@@ -2,10 +2,7 @@
 
 <div class="container">
     <h1>@Model.CurrentCategory.Name</h1>
-    <p>
-        <a class="btn btn-primary" asp-controller="Category" asp-action="CreateProduct">Create</a>
-    </p>
-
+    
     <div class="row mt-5 mb-2">
         @{
             foreach (var product in Model.ProductsByCategory)

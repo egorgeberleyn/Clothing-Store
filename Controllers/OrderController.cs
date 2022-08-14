@@ -1,6 +1,4 @@
-﻿using NuGet.Protocol.Core.Types;
-
-namespace ClothingStore.Controllers
+﻿namespace ClothingStore.Controllers
 {
     public class OrderController : Controller
     {
@@ -28,7 +26,7 @@ namespace ClothingStore.Controllers
                 order.Shipped = true;
                 _orderRepository.SaveAsync();                                    
             }
-            return RedirectToAction("List");
+            return RedirectToAction("OrderList");
         }
 
         [HttpGet]

@@ -4,15 +4,14 @@
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly ShopCart _shopCart;
+        
         public int PageSize = 3;
                        
         public CategoryController(IProductRepository productRepository, 
-            ICategoryRepository categoryRepository, ShopCart shopCart)
+            ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;            
-            _categoryRepository = categoryRepository;
-            _shopCart = shopCart;
+            _categoryRepository = categoryRepository;           
         }
 
         [Route("Category/ProductList/{category}/{page?}")]
@@ -36,30 +35,6 @@
                 }
             };                                                       
             return View(model);            
-        }
-
-        [HttpGet]
-        public IActionResult CreateProduct()
-        {            
-            return View();    
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateProduct(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                product.Category = await _categoryRepository.GetCategoryByNameAsync(product.Category.Name);                
-                await _productRepository.CreateProductAsync(product);
-                return RedirectToAction("Complete");
-            }
-            return View(product);
-        }
-
-        public IActionResult Complete()
-        {
-            ViewBag.Message = "Product is created";            
-            return View();
-        }
+        }        
     }
 }

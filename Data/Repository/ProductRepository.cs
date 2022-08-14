@@ -10,6 +10,9 @@ namespace ClothingStore.Data.Repository
             shopDbContext = context;
         }
 
+        public async Task<List<Product>> GetAllProductsAsync() =>
+            await shopDbContext.Products.ToListAsync();
+
         public async Task<List<Product>> GetProductsByCategoryAsync(Category category) =>
             await shopDbContext.Products.Where(p => p.Category.Equals(category))
                                   .ToListAsync();
@@ -57,6 +60,6 @@ namespace ClothingStore.Data.Repository
             await SaveAsync();
         }       
         public async Task SaveAsync() => 
-            await shopDbContext.SaveChangesAsync();        
+            await shopDbContext.SaveChangesAsync();       
     }
 }
