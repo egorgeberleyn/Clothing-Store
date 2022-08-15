@@ -1,0 +1,16 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Products";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <h3>Product editing</h3>
+    <form asp-controller="Admin" asp-action="EditProduct" method="post" class="form-horizontal">
+        <input type="hidden" asp-for="@Model.Id" />
+        @await Html.PartialAsync("ProductForm", Model)
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-danger">Cancel</a>
+    </form>
+
+</div>

@@ -1,8 +1,7 @@
 ﻿@model ProductListViewModel
 
 <div class="container">
-    <h1>@Model.CurrentCategory.Name</h1>
-    
+    <h1>@Model.CurrentCategory.Name</h1>    
     <div class="row mt-5 mb-2">
         @{
             foreach (var product in Model.ProductsByCategory)

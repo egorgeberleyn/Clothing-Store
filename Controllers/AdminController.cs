@@ -23,7 +23,7 @@
         }
 
         [HttpGet]
-        public IActionResult CreateProduct() => View();
+        public IActionResult CreateProduct() => PartialView();
         
 
         [HttpPost]
@@ -36,6 +36,25 @@
                 return RedirectToAction("Complete");
             }
             return View(product);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int productId)
+        {
+            var product = await _productRepository.GetProductAsync(productId);
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProduct(Product product)
+        {
+            if(ModelState.IsValid)
+            {
+                await _productRepository.UpdateProductAsync(product);
+                TempData["message"] = $"{product.Name} has been saved";
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public IActionResult Complete()

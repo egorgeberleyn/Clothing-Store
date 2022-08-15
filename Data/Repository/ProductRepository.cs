@@ -1,6 +1,4 @@
-﻿using ClothingStore.Models;
-
-namespace ClothingStore.Data.Repository
+﻿namespace ClothingStore.Data.Repository
 {
     public class ProductRepository : IProductRepository
     {
@@ -47,6 +45,9 @@ namespace ClothingStore.Data.Repository
             productFromDb.Name = product.Name;
             productFromDb.Description = product.Description;
             productFromDb.Price = product.Price;
+            productFromDb.Available = product.Available;
+            productFromDb.IsFavorite = product.IsFavorite;
+            productFromDb.Category = product.Category;
 
             await SaveAsync();
         }

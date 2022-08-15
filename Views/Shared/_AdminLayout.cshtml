@@ -12,12 +12,25 @@
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="~/css/style.min.css" />
+
+    <!--Validation style-->
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
 </head>
 <body class="m-1 p-1">    
     
     <div class="bg-success p-2"> 
         <h4>@ViewBag.Title</h4>
     </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+    
     @RenderBody()    
     
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
