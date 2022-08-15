@@ -1,4 +1,6 @@
-﻿namespace ClothingStore.Controllers
+﻿using ClothingStore.Models;
+
+namespace ClothingStore.Controllers
 {
     public class AdminController : Controller
     {
@@ -33,7 +35,8 @@
             {
                 product.Category = await _categoryRepository.GetCategoryByNameAsync(product.Category.Name);
                 await _productRepository.CreateProductAsync(product);
-                return RedirectToAction("Complete");
+                TempData["message"] = $"{product.Name} has been created";
+                return RedirectToAction("Index");
             }
             return View(product);
         }
@@ -54,13 +57,19 @@
                 TempData["message"] = $"{product.Name} has been saved";
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(product);
         }
 
-        public IActionResult Complete()
+        [HttpPost]
+        public async Task<IActionResult> DeleteProduct(int productId)
         {
-            ViewBag.Message = "Product is created";
-            return View();
+            var deletedProduct = await _productRepository.GetProductAsync(productId);
+            await _productRepository.DeleteProductAsync(deletedProduct.Id);
+            if(deletedProduct != null)
+            {                
+                TempData["message"] = $"{deletedProduct.Name} was deleted";
+            }            
+            return RedirectToAction("Index");
         }
     }
 }

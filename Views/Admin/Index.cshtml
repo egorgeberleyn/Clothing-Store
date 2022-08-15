@@ -19,10 +19,10 @@
             <td class="text-secondary">@item.Category.Name</td>
             <td class="text-right">@item.Price.ToString("c", new CultureInfo("en-US"))</td>
             <td class="text-center">
-                <form asp-action="Delete" method="post">
+                <form asp-action="DeleteProduct" method="post">
                    <a asp-action="EditProduct" class="btn btn-sm btn-primary"
                    asp-route-productId=@item.Id>Edit</a>
-                    <input type="hidden" name="ProductId" value="@item.Id" />
+                    <input type="hidden" name="productId" value="@item.Id" />
                     <button type="submit" class="btn btn-danger btn-sm">
                         Delete
                     </button>

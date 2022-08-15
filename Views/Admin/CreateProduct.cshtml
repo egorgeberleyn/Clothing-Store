@@ -8,7 +8,7 @@
     <h3>Product creation</h3>
     <form asp-action="CreateProduct" method="post" class="form-horizontal">
         @await Html.PartialAsync("ProductForm", Model)        
-        <button class="btn btn-primary mt-2" type="submit" value="Create">Save</button>
+        <button class="btn btn-primary mt-2" type="submit" value="Create">Create</button>
         <a asp-action="Index" class="btn btn-danger mt-2">Cancel</a>
     </form>
     

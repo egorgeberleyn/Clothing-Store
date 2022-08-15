@@ -57,7 +57,6 @@
             var productFromDb = await shopDbContext.Products.FindAsync(new object[] { id });
             if (productFromDb is null) return;
             shopDbContext.Remove(productFromDb);
-
             await SaveAsync();
         }       
         public async Task SaveAsync() => 
