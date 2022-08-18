@@ -1,7 +1,6 @@
-﻿using ClothingStore.Models;
-
-namespace ClothingStore.Controllers
+﻿namespace ClothingStore.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IProductRepository _productRepository;

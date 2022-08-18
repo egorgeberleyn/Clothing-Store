@@ -9,7 +9,8 @@
             _orderRepository = orderRepository;
             _shopCart = shopCart;
         }
-        
+
+        [Authorize]
         public async Task<IActionResult> OrderList()
         {
             var orders = await _orderRepository.Orders.Where(о => !о.Shipped).ToListAsync();
@@ -17,6 +18,7 @@
         }
             
         [HttpPost]
+        [Authorize]
         public IActionResult MarkShipped(int orderId)
         {
             Order order = _orderRepository.Orders.FirstOrDefault(o => o.Id == orderId);

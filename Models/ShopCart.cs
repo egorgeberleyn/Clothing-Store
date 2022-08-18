@@ -18,7 +18,7 @@
                 ShopCartItems.Add(new ShopCartItem
                 {
                     Product = item,
-                    Quantity = quantity
+                    Quantity = quantity,                    
                 });
             else
                 shopItem.Quantity += quantity;

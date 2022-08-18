@@ -24,7 +24,7 @@
         
         public async Task CreateOrderAsync(Order order)
         {
-            order.OrderDate = DateTime.Now;            
+            order.OrderDate = DateTime.Now;              
             shopDbContext.AttachRange(order.Items.Select(i => i.Product));                        
             if (order.Id == 0)
                 await shopDbContext.Orders.AddAsync(order);

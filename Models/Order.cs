@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
 
 namespace ClothingStore.Models
 {
@@ -40,7 +39,8 @@ namespace ClothingStore.Models
 
         [BindNever]
         [ScaffoldColumn(false)] //запрет на отображение в исходном коде(системное поле)
-        public DateTime OrderDate { get; set; }       
+        public DateTime OrderDate { get; set; }
+        
         public ICollection<ShopCartItem> Items { get; set; }
     }
 }

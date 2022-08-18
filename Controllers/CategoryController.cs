@@ -5,7 +5,7 @@
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         
-        public int PageSize = 3;
+        public int PageSize = 4;
                        
         public CategoryController(IProductRepository productRepository, 
             ICategoryRepository categoryRepository)

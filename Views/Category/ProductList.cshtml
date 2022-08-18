@@ -6,7 +6,7 @@
         @{
             foreach (var product in Model.ProductsByCategory)
             {
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <img class="img-thumbnail" src="@product.ImageUrl" alt="@product.Name">
                         <h2>@product.Name</h2>
                         <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>

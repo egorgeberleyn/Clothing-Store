@@ -24,6 +24,6 @@
         
         public string Description { get; set; }
 
-        public Category Category { get; set; }
+        public Category Category { get; set; }        
     }
 }
