@@ -1,14 +1,28 @@
-﻿@model List<Product>
-<div class="container">
-    <div class="row">
-        @foreach (var product in Model)
-        {
-            <div class="col-lg-3 offset-lg-1 featured-product">
-                <img class="featured-img" src="@product.ImageUrl" alt="">
-                <h4 class="featured-title">@product.Name</h4>
-                <p class="featured-price">$@product.Price</p>
-                <button class="featured-btn">BUY NOW</button>
-            </div>
+﻿@model SearchListViewModel
+<div class="container">    
+    <div class="row mt-2 mb-2">        
+        <p>Found products for your request: @Model.PageInfo.TotalItems</p>
+        @{
+            foreach (var product in Model.SearchProducts)
+            {
+                <div class="col-lg-3 featured-product">
+                    <img class="featured-img" src="@product.ImageUrl" alt="@product.Name">
+                    <h4 class="featured-title">@product.Name</h4>
+                    <p class="featured-price">$@product.Price</p>
+                    <button class="featured-btn">
+                        <a class="featured-product-link" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">
+                            BUY NOW
+                        </a>
+                    </button>
+                </div>
+            }
         }
+    </div>
+    <div class="row m-2">
+        <div page-model="@Model.PageInfo" page-action="SearchList" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary" style="width:12px;"
+             page-class-selected="pagination-btn-success" style="width:12px;" class="btn-group pull-right offset-lg-5 col-lg-1"
+             page-url-name="@Model.SearchKey">
+        </div>
     </div>
 </div>

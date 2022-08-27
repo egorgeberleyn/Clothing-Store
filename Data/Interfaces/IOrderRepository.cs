@@ -3,8 +3,7 @@
     public interface IOrderRepository
     {
         IQueryable<Order> Orders { get;}
-        Task<List<Order>> GetAllOrdersAsync();
-        //Task<Order> GetOrderAsync(int number); do it
+        Task<List<Order>> GetAllOrdersAsync();        
         Task<Order> GetOrderByIdAsync(int id);
 
         Task CreateOrderAsync(Order order);

@@ -32,6 +32,7 @@
         {
             if (ModelState.IsValid)
             {
+                product.ImageUrl = @$"/img/download/{product.ImageUrl}";
                 product.Category = await _categoryRepository.GetCategoryByNameAsync(product.Category.Name);
                 await _productRepository.CreateProductAsync(product);
                 TempData["message"] = $"{product.Name} has been created";
@@ -52,6 +53,7 @@
         {
             if(ModelState.IsValid)
             {
+                product.ImageUrl = @$"/img/download/{product.ImageUrl}";
                 await _productRepository.UpdateProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
                 return RedirectToAction("Index");

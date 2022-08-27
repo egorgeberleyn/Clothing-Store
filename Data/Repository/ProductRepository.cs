@@ -13,7 +13,7 @@
 
         public async Task<List<Product>> GetProductsByCategoryAsync(Category category) =>
             await shopDbContext.Products.Where(p => p.Category.Equals(category))
-                                  .ToListAsync();
+                                        .ToListAsync();
         
         public async Task<List<Product>> GetProductsOnPageAsync(Category category, int page, int pageSize) =>
            await shopDbContext.Products.Where(p => p.Category.Equals(category))
@@ -24,8 +24,15 @@
         public async Task<List<Product>> GetFavoriteProductsAsync() => 
             await shopDbContext.Products.Where(p => p.IsFavorite).ToListAsync();
 
-        public async Task<List<Product>> GetProductsByNameAsync(string name) =>
-            await shopDbContext.Products.Where(p => p.Name.Contains(name)).ToListAsync();
+        public async Task<List<Product>> GetProductsByNameAsync(string name) => 
+            await shopDbContext.Products.Where(p => p.Name.Contains(name))
+                                        .ToListAsync();
+
+        public async Task<List<Product>> GetProductsByNameOnPageAsync(string name, int page, int pageSize) =>
+            await shopDbContext.Products.Where(p => p.Name.Contains(name))
+                                        .Skip((page - 1) * pageSize)
+                                        .Take(pageSize)
+                                        .ToListAsync();
 
         public async Task<Product> GetProductAsync(int id) =>
             await shopDbContext.Products.FindAsync(new object[] { id });

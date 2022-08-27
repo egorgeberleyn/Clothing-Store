@@ -253,6 +253,11 @@ li {
   border-radius: 3px;
 }
 
+.featured-product-link {
+    text-decoration: none;
+    color: white;
+}
+
 .featured-products-title {
   margin-left: 50px;
   font-size: 35px;
@@ -340,7 +345,7 @@ footer {
 }
 
 .contacts {
-    background-color: #3ABED5;
+    background-color: #3CC3B5;
     color: white;
     margin-top: 16px;
     padding-bottom: 210px;
@@ -360,6 +365,7 @@ footer {
 .contact-icon{
     margin-right: 7px;
     margin-top: 5px;
+    width: 32px;
 }
 
 .contact-numbers{
@@ -373,4 +379,15 @@ footer {
 
 .main-contacts{
     padding-top: 30px;
+}
+
+.pagination-btn-success {
+    background-color: #3CC395;
+    color: white;
+}
+
+.pagination-btn-success:hover {
+    background-color: #32a57e;
+    color: white;
+    border: none
 }

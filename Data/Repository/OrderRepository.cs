@@ -11,7 +11,7 @@
                                 .ThenInclude(i => i.Product);
         }
                                    
-        public OrderRepository(ShopDbContext shopDbContext, ShopCart shopCart)
+        public OrderRepository(ShopDbContext shopDbContext)
         {
             this.shopDbContext = shopDbContext;
         }

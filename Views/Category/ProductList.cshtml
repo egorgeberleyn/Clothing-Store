@@ -2,23 +2,27 @@
 
 <div class="container">
     <h1>@Model.CurrentCategory.Name</h1>    
-    <div class="row mt-5 mb-2">
+    <div class="row">
         @{
             foreach (var product in Model.ProductsByCategory)
             {
-                    <div class="col-lg-3">
-                        <img class="img-thumbnail" src="@product.ImageUrl" alt="@product.Name">
-                        <h2>@product.Name</h2>
-                        <p>Price : @product.Price.ToString("c", new CultureInfo("en-US"))</p>
-                        <p><a class="btn btn-info" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">Add to cart</a></p>
-                    </div>
+                <div class="col-lg-3 featured-product">
+                    <img class="featured-img" src="@product.ImageUrl" alt="@product.Name">
+                    <h4 class="featured-title">@product.Name</h4>
+                    <p class="featured-price">$@product.Price</p>
+                    <button class="featured-btn">
+                        <a class="featured-product-link" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">
+                            BUY NOW
+                        </a>
+                    </button>
+                </div>              
             }           
         }
     </div>
-    <div class="row m-2">
+    <div class="row mt-4">
         <div page-model="@Model.PageInfo" page-action="ProductList" page-classes-enabled="true"
             page-class="btn" page-class-normal="btn-secondary" style="width:12px;"
-            page-class-selected="btn-primary" style="width:12px;" class="btn-group pull-right offset-lg-5 col-lg-1"
+            page-class-selected="pagination-btn-success" style="width:12px;" class="btn-group pull-right offset-lg-5 col-lg-1"
             page-url-category="@Model.CurrentCategory.Name">
         </div>
     </div>
