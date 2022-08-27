@@ -17,7 +17,7 @@
     <style>
         .input-validation-error {
             border-color: red;
-            background-color: #fee;
+            background-color: #fff;
         }
     </style>
 </head>
@@ -29,10 +29,7 @@
                     <img src="~/img/Aditii.png" alt="Logo" />
                 </div>
                 <div class="col-lg-6 offset-lg-1">
-                    <form class="search-bar" action="" method="get">
-                        <input class="search-place" name="s" placeholder="" type="text" />
-                        <button class="search-btn" asp-controller="Search" asp-action="Index" type="submit"></button>
-                    </form>
+                    @await Component.InvokeAsync("SearchPanel")
                 </div>
                 <div class="col-lg-2 offset-lg-1">
                     @await Component.InvokeAsync("CartTotalPrice")
@@ -81,7 +78,7 @@
                     <a class="nav-section" href="#services">SERVICES</a>
                     <span class="delimiter">|</span>
                 </li>
-                <li><a class="nav-section" href="#contactus">CONTACT US</a></li>
+                <li><a class="nav-section" asp-controller="Home" asp-action="ContactUs">CONTACT US</a></li>
             </ul>
         </div>
     </div>
@@ -92,8 +89,9 @@
         <p class="copyright">Copyright © 2022 DarBerg</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript" src="~/lib/slick/slick.min.js"></script>
     <script src="~/js/main.js"></script>
 

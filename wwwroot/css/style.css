@@ -11,7 +11,14 @@
 * {
   box-sizing: border-box;
 }
+html {
+    position: relative;
+    min-height: 100%;    
+}
 
+body {
+    margin-bottom: 10vh;
+}
 /*-------------White-header---------------------*/
 
 header {
@@ -311,20 +318,59 @@ li {
   line-height: 30px;
 }
 
-footer{
-  background-color: #2da89b;
+footer {
+    background-color: #2da89b;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
 }  
 
 .copyright{
   text-align: center;
   color: white;
-  padding: 15px 0;
+  padding: 20px 0;
   font-size: 17px;
-  
+  margin: 0;
 }
 
-/*-------------------------------------*/
+/*--------------Contact Us---------------*/
+.contact-logo{
+    margin-top: 18px;
+}
 
+.contacts {
+    background-color: #3ABED5;
+    color: white;
+    margin-top: 16px;
+    padding-bottom: 210px;
+}
 
-/*----------------Validation---------------*/
+.contact-info {
+    line-height: 32px;
+    margin-left: 150px;
+    margin-top: 25px;
+    font-weight: 300;
+}
 
+.contact-title {
+    font-size: 100px;
+    font-family: 'Bebas Neue Light';
+}
+.contact-icon{
+    margin-right: 7px;
+    margin-top: 5px;
+}
+
+.contact-numbers{
+    margin-top: 45px;
+}
+
+.contact-number {
+    padding-top: 10px;
+    font-family: 'Bebas Neue Light';
+}
+
+.main-contacts{
+    padding-top: 30px;
+}

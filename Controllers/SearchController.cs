@@ -8,7 +8,7 @@
             _productRepository = productRepository;
         }
         
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> SearchList(string name)
         {
             var products = await _productRepository.GetProductsByNameAsync(name);
             if(products == null || products.Count == 0)

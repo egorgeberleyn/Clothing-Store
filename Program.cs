@@ -34,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseStatusCodePages();
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
+    db.Database.EnsureDeleted();
+    db.Database.EnsureCreated();
 }   
 app.UseHttpsRedirection();
 app.UseStaticFiles();

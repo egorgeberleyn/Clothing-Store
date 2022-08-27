@@ -1,0 +1,14 @@
+﻿@model List<Product>
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-3 offset-lg-1 featured-product">
+                <img class="featured-img" src="@product.ImageUrl" alt="">
+                <h4 class="featured-title">@product.Name</h4>
+                <p class="featured-price">$@product.Price</p>
+                <button class="featured-btn">BUY NOW</button>
+            </div>
+        }
+    </div>
+</div>

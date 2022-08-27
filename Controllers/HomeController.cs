@@ -17,6 +17,8 @@
                 FavoriteProducts = await _productRepository.GetFavoriteProductsAsync()
             };                                                         
             return View(favoriteProducts);
-        }        
+        }
+
+        public IActionResult ContactUs() => View();
     }
 }
