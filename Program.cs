@@ -33,8 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseStatusCodePages();
     using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();
-    db.Database.EnsureDeleted();
+    var db = scope.ServiceProvider.GetRequiredService<ShopDbContext>();    
     db.Database.EnsureCreated();
 }   
 app.UseHttpsRedirection();
