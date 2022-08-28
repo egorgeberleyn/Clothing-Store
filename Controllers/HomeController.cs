@@ -14,7 +14,8 @@
         {            
             var favoriteProducts = new HomeViewModel() 
             { 
-                FavoriteProducts = await _productRepository.GetFavoriteProductsAsync()
+                FavoriteProducts = await _productRepository.GetFavoriteProductsAsync(),
+                SlideProducts = await _productRepository.GetSlideProductsAsync()
             };                                                         
             return View(favoriteProducts);
         }

@@ -49,7 +49,6 @@ app.UseAuthorization();
 app.UseMvcWithDefaultRoute();
 app.UseMvc(routes =>
 {   
-    routes.MapRoute(name: "pagination", template: "{controller=Category}/{action=ProductList}/{category}/{page?}");
     routes.MapRoute(name: "shopCart", template: "{controller=ShopCart}/{action=Cart}");
     routes.MapRoute(name: "AddshopCart", template: "{controller=ShopCart}/{action=AddToCart}/{id}");
     routes.MapRoute(name: "DeleteshopCart", template: "{controller=ShopCart}/{action=DeleteFromCart}/{id}");

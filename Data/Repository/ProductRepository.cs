@@ -24,12 +24,15 @@
         public async Task<List<Product>> GetFavoriteProductsAsync() => 
             await shopDbContext.Products.Where(p => p.IsFavorite).ToListAsync();
 
+        public async Task<List<Product>> GetSlideProductsAsync() =>
+            await shopDbContext.Products.Where(p => p.IsSlide).ToListAsync();
+
         public async Task<List<Product>> GetProductsByNameAsync(string name) => 
-            await shopDbContext.Products.Where(p => p.Name.Contains(name))
+            await shopDbContext.Products.Where(p => p.Name.ToLower().Contains(name.ToLower()))
                                         .ToListAsync();
 
         public async Task<List<Product>> GetProductsByNameOnPageAsync(string name, int page, int pageSize) =>
-            await shopDbContext.Products.Where(p => p.Name.Contains(name))
+            await shopDbContext.Products.Where(p => p.Name.ToLower().Contains(name.ToLower()))
                                         .Skip((page - 1) * pageSize)
                                         .Take(pageSize)
                                         .ToListAsync();

@@ -3,13 +3,22 @@
 <div class="container">
     @foreach(var item in Model.ShopCart.ShopCartItems)
     {
-        <div class="bg-opacity-25 bg-success mb-2">
-            <b>ShopItem:</b> @item.Product.Name<br>
-            <b>Price:</b> @item.Product.Price.ToString("c", new CultureInfo("en-US"))<br>
-            <b>Quantity:</b> @item.Quantity
-            <p><a class="btn btn-danger" asp-controller="ShopCart" asp-action="DeleteFromCart" asp-route-id="@item.Product.Id">Delete</a></p>
-        </div>
+        <div class="row bg-opacity-25 bg-success mb-2 mt-2">
+            <div class="col-4">
+                <b>ShopItem:</b> @item.Product.Name<br>
+                <b>Price:</b> @item.Product.Price.ToString("c", new CultureInfo("en-US"))<br>
+                <b>Quantity:</b> @item.Quantity
+                <p><a class="btn btn-danger mt-3" asp-controller="ShopCart" asp-action="DeleteFromCart" asp-route-id="@item.Product.Id">Delete</a></p>
+            </div>
+            <div class="col-2 offset-6">
+                <img src="@item.Product.ImageUrl" class="w-75">
+            </div>
+       </div>
     }
     <hr />
-    <a class="btn btn-info" asp-controller="Order" asp-action="Checkout">Buy</a>
+    <div class="justify-content-end d-flex">
+        <p style="margin-right:10px;">Total price:<b>$@Model.ShopCart.ComputeCartPrice()</b></p>
+        <a class="btn btn-primary" style="font-weight:bold; color: white; padding: 5px 18px;" asp-controller="Order" asp-action="Checkout">BUY</a>
+    </div>
 </div>
+

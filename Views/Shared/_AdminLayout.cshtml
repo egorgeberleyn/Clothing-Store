@@ -22,12 +22,14 @@
     </style>
 </head>
 <body>        
-    <div class="row featured-products-section">
+    <div class="row featured-products-section pb-2">
         <div class="col offset-1"> 
-            <h4>@ViewBag.Title</h4>
+            <h3>@ViewBag.Title</h3>
         </div>
-        <div class="col-2">
-            <a class="btn btn-sm btn-primary" asp-action="Logout" asp-controller="Account">Log Out</a>
+        <div class="col-3">
+            <a class="link-admin" asp-action="OrderList" asp-controller="Order">Order Management</a>
+            <a class="link-admin" asp-action="Index" asp-controller="Home">Home</a>
+            <a class="link-admin" asp-action="Logout" asp-controller="Account">Log Out</a>            
         </div>
     </div>
     @if (TempData["message"] != null)
@@ -37,8 +39,9 @@
     
     @RenderBody()    
     
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript" src="~/lib/slick/slick.min.js"></script>
     <script src="~/js/main.js"></script>
 

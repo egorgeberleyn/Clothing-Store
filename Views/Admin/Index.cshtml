@@ -20,7 +20,7 @@
             <td class="text-right">@item.Price.ToString("c", new CultureInfo("en-US"))</td>
             <td class="text-center">
                 <form asp-action="DeleteProduct" method="post">
-                   <a asp-action="EditProduct" class="btn btn-sm btn-primary"
+                    <a asp-action="EditProduct" class="btn btn-sm" style="background-color: #3CC395; color: white;"
                    asp-route-productId=@item.Id>Edit</a>
                     <input type="hidden" name="productId" value="@item.Id" />
                     <button type="submit" class="btn btn-danger btn-sm">
@@ -32,6 +32,6 @@
     }
 </table>
 <div class="text-center">
-    <a asp-action="CreateProduct" class="btn btn-primary">Create Product</a>
+    <a asp-action="CreateProduct" class="featured-btn" style="text-decoration: none; background-color: #3AC1B8;">Create Product</a>
 </div>
 

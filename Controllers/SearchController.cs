@@ -12,8 +12,8 @@
         public async Task<IActionResult> SearchList(string name, int page=1)
         {
             var products = await _productRepository.GetProductsByNameOnPageAsync(name, page, PageSize);
-            if(products == null || products.Count == 0)
-                return Ok();
+            if (products == null || products.Count == 0)
+                return RedirectToAction("ProductsNotFound");
             var model = new SearchListViewModel
             {
                 SearchKey = name,
@@ -28,5 +28,7 @@
             };
             return View(model);
         }
+
+        public IActionResult ProductsNotFound() => View();
     }
 }

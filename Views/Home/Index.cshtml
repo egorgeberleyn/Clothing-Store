@@ -1,43 +1,32 @@
 ﻿@model HomeViewModel 
 
 <div class="shop-slider">
-    <div class="single-item-slide">
-        <div class="shop-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1">
-                        <img class="slide-img" src="/img/nike-tshirt.png" alt="t-shirt">
-                    </div>
-                    <div class="col-lg-5 offset-lg-2">
-                        <h1 class="slide-tagline">COWHIDE<br>STANDART CREW</h1>
-                        <p class="slide-descriction">
-                            White coloured, short-sleeved, printed T-shirt for men by<br>
-                            Levi's. This crew-neck T-shirt is made of organic cotton and<br>
-                            comes in a regular fit.
-                        </p>
-                        <button class="slide-btn">SHOP NOW</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="shop-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 offset-lg-1">
-                        <img class="slide-img" src="/img/gucci-tshirt.png" alt="t-shirt">
-                    </div>
-                    <div class="col-lg-5 offset-lg-2">
-                        <h1 class="slide-tagline">COWHIDE<br>STANDART CREW</h1>
-                        <p class="slide-descriction">
-                            White coloured, short-sleeved, printed T-shirt for men by<br>
-                            Levi's. This crew-neck T-shirt is made of organic cotton and<br>
-                            comes in a regular fit.
-                        </p>
-                        <button class="slide-btn">SHOP NOW</button>
+    <div class="single-item-slide">       
+        @foreach (var item in Model.SlideProducts)
+        {
+            <div class="shop-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 offset-lg-1">
+                            <img class="slide-img" src=@item.ImageUrl alt=@item.Name>
+                        </div>
+                        <div class="col-lg-5 offset-lg-2">
+                            <h1 class="slide-tagline">COWHIDE<br>STANDART CREW</h1>
+                            <p class="slide-descriction">
+                                White coloured, short-sleeved, printed T-shirt for men by<br>
+                                Levi's. This crew-neck T-shirt is made of organic cotton and<br>
+                                comes in a regular fit.
+                            </p>
+                            <button class="slide-btn">
+                                <a class="featured-product-link" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@item.Id">
+                                    SHOP NOW
+                                </a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
@@ -46,32 +35,32 @@
         <div class="product-card">
             <img class="card-img" src="/img/shoes.png" alt="">
             <h4 class="card-title">BRANDED<br> SHOES</h4>
-            <button class="card-btn">SHOP</button>
+            <a class="card-btn" href="/Category/ProductList?category=Shoes" style="text-decoration:none;">SHOP</a>
         </div>
         <div class="product-card separator-card">
             <img class="card-img" style="width:180px;" src="/img/dress_shirt.png" alt="">
             <h4 class="card-title">BRANDED<br> SHIRTS</h4>
-            <button class=" card-btn">SHOP</button>
+            <a class=" card-btn" href="/Category/ProductList?category=Man Store" style="text-decoration:none;">SHOP</a>
         </div>
         <div class="product-card">
             <img class="card-img" src="/img/jeans.png" alt="">
             <h4 class="card-title">BRANDED<br> JEANS</h4>
-            <button class="card-btn">SHOP</button>
+            <a class="card-btn" href="/Category/ProductList?category=Man Store" style="text-decoration:none;">SHOP</a>
         </div>
         <div class="product-card">
             <img class="card-img" src="/img/converse.png" alt="">
             <h4 class="card-title">BRANDED<br> SNEACKERS</h4>
-            <button class="card-btn">SHOP</button>
+            <a class="card-btn" href="/Category/ProductList?category=Shoes" style="text-decoration:none;">SHOP</a>
         </div>
         <div class="product-card separator-card">
             <img class="card-img" style="width:200px;" src="/img/t-shirt.png" alt="">
             <h4 class="card-title">BRANDED<br> T-SHIRTS</h4>
-            <button class=" card-btn">SHOP</button>
+            <a class=" card-btn" href="/Category/ProductList?category=Man Store" style="text-decoration:none;">SHOP</a>
         </div>
         <div class="product-card">
             <img class="card-img" style="width:200px;" src="/img/hoodie2.png" alt="">
             <h4 class="card-title">BRANDED<br>HOODIE</h4>
-            <button class="card-btn">SHOP</button>
+            <a class="card-btn" href="/Category/ProductList?category=Man Store" style="text-decoration:none;">SHOP</a>
         </div>
     </div>
 </div>
@@ -91,28 +80,13 @@
                     <img class="featured-img" src="@product.ImageUrl" alt="">
                     <h4 class="featured-title">@product.Name</h4>
                     <p class="featured-price">$@product.Price</p>
-                    <button class="featured-btn">BUY NOW</button>
+                    <button class="featured-btn">
+                        <a class="featured-product-link" asp-controller="ShopCart" asp-action="AddToCart" asp-route-id="@product.Id">
+                            BUY NOW
+                        </a>
+                    </button>
                 </div>
             }                       
-            @*
-            <div class="col-lg-3 offset-lg-1 featured-product">
-                <img class="featured-img" src="/img/branded/dress.png" alt="">
-                <h4 class="featured-title">BLUE DRESS</h4>
-                <p class="featured-price">$122</p>
-                <button class="featured-btn">BUY NOW</button>
-            </div>
-            <div class="col-lg-3 offset-lg-1 featured-product">
-                <img class="featured-img" src="/img/branded/women_bag.png" alt="">
-                <h4 class="featured-title">WOMAN BAG</h4>
-                <p class="featured-price">$455</p>
-                <button class="featured-btn">BUY NOW</button>
-            </div>
-            <div class="col-lg-3 offset-lg-1 featured-product">
-                <img class="featured-img" src="/img/branded/healed shoes.png" alt="">
-                <h4 class="featured-title">HEALED SHOES</h4>
-                <p class="featured-price">$340</p>
-                <button class="featured-btn">BUY NOW</button>
-            </div>*@
         </div>
     </div>
 </div>

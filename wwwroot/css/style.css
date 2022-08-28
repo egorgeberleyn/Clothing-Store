@@ -257,6 +257,9 @@ li {
     text-decoration: none;
     color: white;
 }
+.featured-product-link:hover {    
+    color: black;
+}
 
 .featured-products-title {
   margin-left: 50px;
@@ -390,4 +393,20 @@ footer {
     background-color: #32a57e;
     color: white;
     border: none
+}
+
+
+/*--------------Admin---------------*/
+.link-admin {       
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    margin-right: 10px;
+    font-size: 20px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.link-admin:hover{
+    color: black;
+    background-color: white;
 }

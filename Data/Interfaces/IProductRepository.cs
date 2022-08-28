@@ -6,6 +6,7 @@
         Task<List<Product>> GetProductsByCategoryAsync(Category category);
         Task<List<Product>> GetProductsOnPageAsync(Category category, int page, int pageSize);
         Task<List<Product>> GetFavoriteProductsAsync();
+        Task<List<Product>> GetSlideProductsAsync();
         Task<List<Product>> GetProductsByNameOnPageAsync(string name, int page, int pageSize);
         Task<List<Product>> GetProductsByNameAsync(string name);
         

@@ -13,8 +13,7 @@
             _productRepository = productRepository;            
             _categoryRepository = categoryRepository;           
         }
-
-        [Route("Category/ProductList/{category}/{page?}")]
+        
         public async Task<IActionResult> ProductList(string category, int page = 1)
         {
             Category currentCategory = await _categoryRepository

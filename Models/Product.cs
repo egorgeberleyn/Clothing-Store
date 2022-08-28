@@ -1,4 +1,6 @@
-﻿namespace ClothingStore.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+namespace ClothingStore.Models
 {
     public class Product
     {
@@ -23,6 +25,9 @@
         public int Available { get; set; } = 0; //наличие товара
         
         public string Description { get; set; }
+
+        [BindNever]
+        public bool IsSlide { get; set; }
 
         public Category Category { get; set; }        
     }
