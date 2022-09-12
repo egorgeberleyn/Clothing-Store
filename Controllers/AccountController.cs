@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace ClothingStore.Controllers
+﻿namespace ClothingStore.Controllers
 {
     [Authorize]
     public class AccountController : Controller
