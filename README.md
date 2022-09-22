@@ -1,7 +1,6 @@
 # Clothing Store
-![Screen1](https://user-images.githubusercontent.com/79607850/190929787-a095b29c-6013-473f-bb5b-0e42c1944a6f.jpg)
 ## This application is developed on ASP NET Core MVC
-
+![Screen1](https://user-images.githubusercontent.com/79607850/190929787-a095b29c-6013-473f-bb5b-0e42c1944a6f.jpg)
 ### Stack: 
 <b>Backend:</b> .NET, ASP NET Core MVC, ASP NET Identity, PostgreSQL, Entity Framework<br>
 <b>Frontend:</b> HTML/CSS/JS, Bootstrap, jQuery
